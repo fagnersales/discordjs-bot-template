@@ -45,6 +45,15 @@ function loadCommands(client) {
                 // Setar dentro de commands, o nome do comando e tudo o que o arquivo exporta
                 client.commands.set(file.config.name, file)
                 console.log(`${file.config.name} foi setado com sucesso!`)
+
+                // Checar se o comando faz uso de aliases
+                if (file.config.aliases) {
+                    // Salvar as aliases unicamente
+                    for (const alias of file.config.aliases) {
+                        client.commands.set(alias, file)
+                        console.log(`${alias} setada para ${file.config.name}!`)
+                    }
+                }
             } else {
                 console.log(`${javascriptFile} Não está exportando os dados necessários!`)
             }
